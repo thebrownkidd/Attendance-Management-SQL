@@ -1,4 +1,5 @@
 import sqlite3 as sql
+from datetime import date
 def validate_user():
     user = int(input("Enter your roll no: "))
     pas = str(input("Enter the login code: "))
@@ -12,3 +13,12 @@ def validate_user():
         return [False,user]
     else:
         return [True,user]
+def present(user):
+    db_att = sql.connect('attendance.db')
+    cur = db_att.cursor()
+    today = date.today()
+    cur.execute('DESC ATTENDANCE')
+    disc = cur.fetchall()
+    att = []
+    for x in disc:
+        att.append(x[0])
