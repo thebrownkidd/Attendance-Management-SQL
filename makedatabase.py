@@ -1,10 +1,10 @@
 import sqlite3 as sql
-db = sql.connect('attendance.db')
+db = sql.connect('teacher.db')
 cur = db.cursor()
-cur.execute("CREATE TABLE ATTENDANCE (U_NAME CHAR, U_ID INT(4) PRIMARY KEY);")
-# cur.execute("INSERT INTO STUDENTS VALUES(\"Arpit\", 1234,\"Arpit123\",12,\"A\")")
+cur.execute("CREATE TABLE TEACHER (T_NAME CHAR, T_ID INT(4) PRIMARY KEY, TPASS CHAR NOT NULL)")
+cur.execute("INSERT INTO TEACHER VALUES(\"SOMETEACHER\", 1234,\"Pass123\")")
 db.commit()
-cur.execute("SELECT * FROM ATTENDANCE")
+cur.execute("SELECT * FROM TEACHER")
 entries = cur.fetchall()
 for i in entries:
     print(i)

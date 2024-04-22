@@ -1,4 +1,21 @@
 import Mark
+import sqlite3 as sql
+from datetime import date
+today = date.today()
+obj = sql.connect('teacher.db')
+t_cur = obj.cursor()
+while True:
+    print("Please login....\n")
+    t_user = int(input("Enter teacher id: "))
+    t_pass = str(input("Enter teacher pass: "))
+
+    t_cur.execute("SELECT * FROM TEACHER WHERE TID = " + str(t_user)+ " AND TPASS = \""+ t_pass + "\"")
+    out = t_cur.fetchall()
+    if len(out) == 0:
+        print("ERROR! INVALID LOGIN")
+    else:
+        print("\n\n\n\n\n")
+        break
 while True:
     print("Welocme to AMS, please select one of the following outputs: ")
     print("\nSno\t| Action\n0. \t| EXIT\n1. \t| View your attendance\n2. \t| Mark Attendance\n")
