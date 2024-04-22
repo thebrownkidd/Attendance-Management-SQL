@@ -17,7 +17,7 @@ def present(user):
     db_att = sql.connect('attendance.db')
     cur = db_att.cursor()
     today = date.today()
-    cur.execute('DESC TABLE ATTENDANCE')
+    cur.execute('DESCRIBE TABLE ATTENDANCE;')
     disc = cur.fetchall()
     att = []
     for x in disc:

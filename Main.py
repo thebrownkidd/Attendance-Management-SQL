@@ -9,12 +9,17 @@ while True:
     t_user = int(input("Enter teacher id: "))
     t_pass = str(input("Enter teacher pass: "))
 
-    t_cur.execute("SELECT * FROM TEACHER WHERE TID = " + str(t_user)+ " AND TPASS = \""+ t_pass + "\"")
+    t_cur.execute("SELECT * FROM TEACHER WHERE T_ID = " + str(t_user)+ " AND TPASS = \""+ t_pass + "\"")
     out = t_cur.fetchall()
     if len(out) == 0:
         print("ERROR! INVALID LOGIN")
     else:
         print("\n\n\n\n\n")
+        obj.close()
+        new_obj = sql.connect('attendance.db')
+        newcur = new_obj.cursor()
+        newcur.execute('ALTER TABLE STUDENT ADD ' + str(today) + 'INT(1);')
+        new_obj.close()
         break
 while True:
     print("Welocme to AMS, please select one of the following outputs: ")
