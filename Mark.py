@@ -1,5 +1,6 @@
 import sqlite3 as sql
 from datetime import date
+import os
 def validate_user():
     user = int(input("Enter your roll no: "))
     pas = str(input("Enter the login code: "))
@@ -30,3 +31,12 @@ def present(user):
     #     print(x)
     cur.execute("UPDATE ATTENDANCE SET \"" + str(today)+ "\" = 1 WHERE U_ID = " + str(user))
     db_att.commit()
+    print("Marked present for this user")
+    Trash = input("press enter to continue")
+    os.system('cls' if os.name == 'nt' else 'clear')
+def view_attendance(user):
+    db_att = sql.connect('attendance.db')
+    cur = db_att.cursor()
+    cur.execute("SELECT * FROM ATTENDANCE WHERE U_ID = "+str(user))
+    ret = cur.fetchall()
+    return ret
