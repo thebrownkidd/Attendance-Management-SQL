@@ -19,7 +19,7 @@ monthbynumber = {
 }
 os.system('cls' if os.name == 'nt' else 'clear')
 today = date.today()
-obj = sql.connect('teacher.db')
+obj = sql.connect('C:/Projects/Attendance-Management-SQL/Databases/teacher.db')
 t_cur = obj.cursor()
 while True:
     print("Please login....\n")
@@ -33,7 +33,7 @@ while True:
     else:
         print("\n\n\n\n\n")
         obj.close()
-        new_obj = sql.connect('attendance.db')
+        new_obj = sql.connect('C:/Projects/Attendance-Management-SQL/Databases/attendance.db')
         newcur = new_obj.cursor()
         today = today.strftime("%d%B")
         command = "ALTER TABLE ATTENDANCE ADD \"" + str(today) + "\" INT(1) DEFAULT 0;"
