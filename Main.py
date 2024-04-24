@@ -18,7 +18,7 @@ while True:
         obj.close()
         new_obj = sql.connect('attendance.db')
         newcur = new_obj.cursor()
-        newcur.execute('ALTER TABLE STUDENT ADD ' + str(today) + 'INT(1);')
+        newcur.execute('ALTER TABLE STUDENTS ADD ' + str(today) + ' INT(1);')
         new_obj.close()
         break
 while True:

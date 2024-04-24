@@ -17,8 +17,9 @@ def present(user):
     db_att = sql.connect('attendance.db')
     cur = db_att.cursor()
     today = date.today()
-    cur.execute('DESCRIBE TABLE ATTENDANCE;')
-    disc = cur.fetchall()
-    att = []
-    for x in disc:
-        att.append(x[0])
+    # cur.execute('DESCRIBE TABLE ATTENDANCE;')
+    # disc = cur.fetchall()
+    # att = []
+    # for x in disc:
+    #     att.append(x[0])
+    cur.execute("ENTER INTO ATTENDANCE (" + str(today)+ ") VALUES (1) WHERE S_ID = \"" + user +"\"" )

@@ -1,0 +1,8 @@
+Teacehr database:
+tid = 1234
+tpass = Pass123
+
+Attendance database:
+Table: Student
+U_id = 1234
+pass = Arpit123
