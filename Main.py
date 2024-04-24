@@ -21,26 +21,26 @@ os.system('cls' if os.name == 'nt' else 'clear')
 today = date.today()
 obj = sql.connect('teacher.db')
 t_cur = obj.cursor()
-while True:
-    print("Please login....\n")
-    t_user = int(input("Enter teacher id: "))
-    t_pass = str(input("Enter teacher pass: "))
+# while True:
+#     print("Please login....\n")
+#     t_user = int(input("Enter teacher id: "))
+#     t_pass = str(input("Enter teacher pass: "))
 
-    t_cur.execute("SELECT * FROM TEACHER WHERE T_ID = " + str(t_user)+ " AND TPASS = \""+ t_pass + "\"")
-    out = t_cur.fetchall()
-    if len(out) == 0:
-        print("ERROR! INVALID LOGIN")
-    else:
-        print("\n\n\n\n\n")
-        obj.close()
-        new_obj = sql.connect('attendance.db')
-        newcur = new_obj.cursor()
-        today = today.strftime("%d%B")
-        command = "ALTER TABLE ATTENDANCE ADD \"" + str(today) + "\" INT(1) DEFAULT 0;"
-        newcur.execute(command)
-        new_obj.close()
-        os.system('cls' if os.name == 'nt' else 'clear')
-        break
+#     t_cur.execute("SELECT * FROM TEACHER WHERE T_ID = " + str(t_user)+ " AND TPASS = \""+ t_pass + "\"")
+#     out = t_cur.fetchall()
+#     if len(out) == 0:
+#         print("ERROR! INVALID LOGIN")
+#     else:
+#         print("\n\n\n\n\n")
+#         obj.close()
+#         new_obj = sql.connect('attendance.db')
+#         newcur = new_obj.cursor()
+#         today = today.strftime("%d%B")
+#         command = "ALTER TABLE ATTENDANCE ADD \"" + str(today) + "\" INT(1) DEFAULT 0;"
+#         newcur.execute(command)
+#         new_obj.close()
+#         os.system('cls' if os.name == 'nt' else 'clear')
+#         break
 while True:
     print("Welocme to AMS, please select one of the following outputs: ")
     print("\nSno\t| Action\n0. \t| EXIT\n1. \t| View your attendance\n2. \t| Mark Attendance\n3. \t| Admin Menu")
@@ -76,23 +76,31 @@ while True:
                 print("\n\nERROR! INVALID LOGIN")
                 print("Redirecting to general menu.....\n\n")
             else:
-                os.system('cls' if os.name == 'nt' else 'clear')
-                print("Welcome to admin menu.... ")
-                print("\n1.\t| Exit to Genetal menu\n2.\t| View attendance record\n3.\t| Update attendance\n4.\t| Remove student\n\n\n")
-                opt = int(input("Select an option: "))
-                if opt == 1:
+                while admin:
                     os.system('cls' if os.name == 'nt' else 'clear')
-                    admin = False
-                    break
-                elif opt == 2:
-                    manage.viewall()
-                elif opt == 3:
-                    upd_id = int(input("Enter the id of student you wanna mark: "))
-                    upd_month= monthbynumber[int(input("Enter the month: "))]
-                    upd_day = int(input("Enter the day of the month: "))
-                    upd_date = str(upd_day) + upd_month 
-                    action = int(input("Enter the amount of attendance this day holds: "))
-                    manage.update(upd_id,upd_date,action)
+                    print("Welcome to admin menu.... ")
+                    print("\n1.\t| Exit to Genetal menu\n2.\t| View attendance record\n3.\t| Update attendance\n4.\t| Remove student\n5.\t| Full access mode:\n\n")
+                    opt = int(input("Select an option: "))
+                    if opt == 1:
+                        os.system('cls' if os.name == 'nt' else 'clear')
+                        admin = False
+                        break
+                    elif opt == 2:
+                        manage.viewall()
+                    elif opt == 3:
+                        upd_id = int(input("Enter the id of student you wanna mark: "))
+                        upd_month= monthbynumber[int(input("Enter the month: "))]
+                        upd_day = int(input("Enter the day of the month: "))
+                        upd_date = str(upd_day) + upd_month 
+                        action = int(input("Enter the amount of attendance this day holds: "))
+                        manage.update(upd_id,upd_date,action)
+                    elif opt == 4:
+                        user = int(input("Enter id of student you want to remove: "))
+                        manage.remove(user)
+                    elif opt == 5:
+                        manage.fullaccess()
+                    else:
+                        print("Invalid input")
     else:
         print("Enter valid option!!")
 
