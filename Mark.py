@@ -22,4 +22,11 @@ def present(user):
     # att = []
     # for x in disc:
     #     att.append(x[0])
-    cur.execute("ENTER INTO ATTENDANCE (" + str(today)+ ") VALUES (1) WHERE S_ID = \"" + user +"\"" )
+    today = today.strftime("%d%B")
+    # cur.execute("SELECT * FROM ATTENDANCE WHERE U_ID = "+ str(user))
+    # data = cur.fetchall()
+    # for x in data:
+    #     print("Entry: ")
+    #     print(x)
+    cur.execute("UPDATE ATTENDANCE SET \"" + str(today)+ "\" = 1 WHERE U_ID = " + str(user))
+    db_att.commit()
