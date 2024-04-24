@@ -44,6 +44,8 @@ def fullaccess():
         try:
             atcur.execute(query)
             out = atcur.fetchall()
-            print(out)
+            if len(out) != 0:
+                for x in out:
+                    print(x)
         except:
             print("invalid query")
