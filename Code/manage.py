@@ -1,7 +1,7 @@
 import sqlite3 as sql
 import os
 def viewall():
-    attendance = sql.connect("attendance.db")
+    attendance = sql.connect("Databases/attendance.db")
     atcur = attendance.cursor()
     atcur.execute("SELECT * FROM ATTENDANCE")
     attendance_table = atcur.fetchall()
@@ -16,7 +16,7 @@ def viewall():
     for x in students_table:
         print(x)
 def update(id,date,action):
-    attendance = sql.connect("attendance.db")
+    attendance = sql.connect("Databases/attendance.db")
     atcur = attendance.cursor()
     atcur.execute("UPDATE ATTENDANCE SET \""+ date + "\" = "+ str(action)+ " WHERE U_ID = "+ str(id))
     print("Attendance updated")
@@ -24,7 +24,7 @@ def update(id,date,action):
     trash = input("Press Enter to continue")
     os.system('cls' if os.name == 'nt' else 'clear')
 def remove(user):
-    attendance = sql.connect("attendance.db")
+    attendance = sql.connect("Databases/attendance.db")
     atcur = attendance.cursor()
     atcur.execute("DELETE FROM STUDENTS WHERE U_ID = "+ str(user))
     print("Deleted from students")
@@ -32,7 +32,7 @@ def remove(user):
     print("Deleted from attendance")
 def fullaccess():
     print("Welcome to full access mode. You may use SQL here, you may quit by writing \"quit\" and the database will commit automatically")
-    attendance = sql.connect("attendance.db")
+    attendance = sql.connect("Databases/attendance.db")
     atcur = attendance.cursor()
     while True:
         query = str(input(""))

@@ -4,7 +4,7 @@ import os
 def validate_user():
     user = int(input("Enter your roll no: "))
     pas = str(input("Enter the login code: "))
-    db_att = sql.connect('attendance.db')
+    db_att = sql.connect('Databases/attendance.db')
     cursor = db_att.cursor()
     command = "SELECT * FROM STUDENTS WHERE U_ID = " + str(user) + " AND PASS = \"" + pas + "\";"
     # print(command)
@@ -15,7 +15,7 @@ def validate_user():
     else:
         return [True,user]
 def present(user):
-    db_att = sql.connect('attendance.db')
+    db_att = sql.connect('Databases/attendance.db')
     cur = db_att.cursor()
     today = date.today()
     # cur.execute('DESCRIBE TABLE ATTENDANCE;')
@@ -35,7 +35,7 @@ def present(user):
     Trash = input("press enter to continue")
     os.system('cls' if os.name == 'nt' else 'clear')
 def view_attendance(user):
-    db_att = sql.connect('attendance.db')
+    db_att = sql.connect('Databases/attendance.db')
     cur = db_att.cursor()
     cur.execute("SELECT * FROM ATTENDANCE WHERE U_ID = "+str(user))
     ret = cur.fetchall()
