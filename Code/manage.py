@@ -15,6 +15,7 @@ def viewall():
     print("(Name, ID, Class, Section)")
     for x in students_table:
         print(x)
+    trash = input("Press enter to continue")
 def update(id,date,action):
     attendance = sql.connect("Databases/attendance.db")
     atcur = attendance.cursor()
